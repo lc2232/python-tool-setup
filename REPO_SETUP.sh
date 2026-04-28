@@ -47,6 +47,14 @@ echo -e "${GREEN}   ✅ Copied .vscode/settings.json${NC}"
 cp "$SCRIPT_DIR/tasks.json" "$REPO_ROOT/.vscode/tasks.json"
 echo -e "${GREEN}   ✅ Copied .vscode/tasks.json${NC}"
 
+# Check if .pre-commit-config.yaml already exists
+if [ ! -f "$REPO_ROOT/.pre-commit-config.yaml" ]; then
+    cp "$SCRIPT_DIR/.pre-commit-config.yaml" "$REPO_ROOT/.pre-commit-config.yaml"
+    echo -e "${GREEN}   ✅ Copied .pre-commit-config.yaml${NC}"
+else
+    echo -e "${GREEN}   ✅ .pre-commit-config.yaml already exists${NC}"
+fi
+
 echo ""
 
 # Step 2: Append README snippet
@@ -96,6 +104,24 @@ for package in "${PACKAGES[@]}"; do
 done
 
 echo ""
+
+# Step 5: Optional pre-commit setup
+echo -e "${YELLOW}🔗 Step 5: Setting up pre-commit hooks (optional)...${NC}"
+
+read -p "Do you want to install pre-commit hooks? (y/n) " -n 1 -r
+echo
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+    pip install pre-commit > /dev/null 2>&1
+    echo -e "${GREEN}   ✅ Installed pre-commit${NC}"
+    
+    cd "$REPO_ROOT"
+    pre-commit install > /dev/null 2>&1
+    echo -e "${GREEN}   ✅ Initialized pre-commit hooks${NC}"
+else
+    echo -e "${YELLOW}   ⏭️  Skipped pre-commit setup${NC}"
+fi
+
+echo ""
 echo -e "${BLUE}✨ Setup complete!${NC}"
 echo ""
 echo -e "${GREEN}Next steps:${NC}"
@@ -104,6 +130,8 @@ echo "2. Check that Python extension selects .venv:"
 echo "   Cmd+Shift+P → 'Python: Select Interpreter' → Choose .venv"
 echo "3. Test formatting: black --check ."
 echo "4. Test linting: ruff check ."
+echo "5. If pre-commit hooks were installed, test them:"
+echo "   pre-commit run --all-files"
 echo ""
 echo -e "${BLUE}Available VS Code tasks (Cmd+Shift+P → 'Run Task'):${NC}"
 echo "  - Format Python"

@@ -41,6 +41,7 @@ env/
 htmlcov/
 .mypy_cache/
 .ruff_cache/
+.pre-commit/
 
 # OS
 .DS_Store

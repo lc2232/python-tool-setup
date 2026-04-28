@@ -7,6 +7,7 @@ A shared configuration repository for maintaining consistent Python code style a
 - **`pyproject.toml`** - Shared configuration for Black formatter and Ruff linter
 - **`.vscode-settings.json`** - VS Code Python extension settings template
 - **`tasks.json`** - VS Code tasks for running formatters and linters
+- **`.pre-commit-config.yaml`** - Pre-commit hooks configuration template
 - **`REPO_SETUP.sh`** - Automated setup script for each repository
 - **`README_SNIPPET.md`** - Copy-paste section for individual repository READMEs
 
@@ -36,9 +37,11 @@ bash python-style-config/REPO_SETUP.sh
 
 The `REPO_SETUP.sh` script automatically:
 - ✅ Copies `pyproject.toml`, `.vscode/settings.json`, and `.vscode/tasks.json`
+- ✅ Copies `.pre-commit-config.yaml` (optional pre-commit hook setup)
 - ✅ Appends the Code Quality section to your existing README.md
 - ✅ Creates a `.venv` virtual environment if it doesn't exist
 - ✅ Installs `black`, `ruff`, `mypy`, and `pytest`
+- ✅ Optionally sets up pre-commit hooks (with user confirmation)
 
 After running the script:
 1. Reload VS Code: `Cmd+Shift+P` → "Developer: Reload Window"

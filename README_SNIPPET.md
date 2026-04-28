@@ -32,30 +32,24 @@ You can also run linting tasks directly from VS Code using the Command Palette (
 
 ### Pre-commit Hooks (Optional)
 
-To automatically format and lint before commits, install pre-commit:
+To automatically format and lint before commits, the setup includes a `.pre-commit-config.yaml` file. To activate it:
 
 ```bash
 pip install pre-commit
 pre-commit install
 ```
 
-Then add a `.pre-commit-config.yaml` to your repo root:
+Then pre-commit will automatically run Black, Ruff, and Mypy checks before each commit. You can also run it manually:
 
-```yaml
-repos:
-  - repo: https://github.com/psf/black
-    rev: 24.1.1
-    hooks:
-      - id: black
-        language_version: python3
-
-  - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.2.0
-    hooks:
-      - id: ruff
-        args: [--fix]
-      - id: ruff-format
+```bash
+pre-commit run --all-files  # Check all files
+pre-commit run              # Check staged files
 ```
+
+The pre-commit configuration includes:
+- **Black** - Auto-formats Python code
+- **Ruff** - Checks and fixes linting issues
+- **Mypy** - Performs type checking
 
 ### Configuration
 
