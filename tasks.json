@@ -135,6 +135,21 @@
           }
         }
       ]
+    },
+    {
+      "label": "Pre-commit Check",
+      "type": "shell",
+      "command": "${workspaceFolder}/.venv/bin/pre-commit",
+      "args": ["run", "--all-files"],
+      "group": {
+        "kind": "test",
+        "isDefault": false
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "problemMatcher": []
     }
   ]
 }
