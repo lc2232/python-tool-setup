@@ -24,6 +24,9 @@ mypy src/
 
 You can also run linting tasks directly from VS Code using the Command Palette (`Cmd+Shift+P`):
 
+1: Type "Tasks: Run Task" and press Enter
+2: Then you should see a list of all available tasks:
+
 - **Format Python** - Format the current file or entire workspace with Black
 - **Lint Python (Ruff)** - Check the current file with Ruff
 - **Lint Python (Ruff) - Fix** - Auto-fix linting issues in current file

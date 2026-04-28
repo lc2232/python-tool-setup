@@ -12,13 +12,12 @@ repos:
       - id: ruff
         types: [python]
         args: [--fix]
-      - id: ruff-format
-        types: [python]
 
   - repo: https://github.com/pre-commit/mirrors-mypy
     rev: v1.8.0
     hooks:
       - id: mypy
         types: [python]
+        files: ^src/
         additional_dependencies: []
         args: [--ignore-missing-imports]
